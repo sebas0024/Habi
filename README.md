@@ -59,3 +59,39 @@ Nota para Windows: Si recibes un error de permisos al activar el entorno, ejecut
 - Interfaz Responsiva: Diseño de tarjetas horizontales optimizado para web y móvil.
 - Imágenes Inteligentes: Asignación automática de fachadas mediante el ID de cada propiedad.
 - Formateo Local: Precios mostrados en formato de moneda colombiana (es-CO).
+
+
+🚀 Extensión: Servicio de "Me gusta" (Conceptual)
+
+Se diseñó una extensión del modelo de datos para permitir que los usuarios registrados interactúen con los inmuebles mediante un sistema de "Me gusta" o favoritos.
+
+📊 Diseño del Modelo Entidad-Relación
+
+Para cumplir con los requerimientos, se extendió la base de datos original incorporando dos nuevas entidades:
+
+- users: Almacena la información de los usuarios registrados en la plataforma. Es la base para garantizar que solo usuarios autenticados realicen interacciones.
+- likes: Funciona como una tabla relacional (muchos a muchos) que vincula a un usuario con una propiedad específica.
+
+💡 Reglas de Negocio Implementadas
+
+- Restricción de Usuario: La integridad referencial (Foreign Key hacia la tabla users) asegura que no existan interacciones de usuarios no registrados.
+- Interacción: Se definió una llave única compuesta (user_id, property_id) que impide que un usuario registre más de un "Me gusta" sobre el mismo inmueble.
+- Trazabilidad Histórica: La inclusión del campo created_at en la tabla de relación permite reconstruir el historial cronológico de favoritos de cada usuario.
+
+🛠️ SQL de Extensión (Propuesta)
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(64) UNIQUE NOT NULL,
+    email VARCHAR(120) UNIQUE NOT NULL
+);
+
+CREATE TABLE likes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    property_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_property FOREIGN KEY (property_id) REFERENCES property(id),
+    UNIQUE (user_id, property_id)
+);
