@@ -1,26 +1,34 @@
-async function buscar() {
-    const ciudad = document.getElementById('filtro-ciudad').value;
-    //const ano = document.getElementById('filtro-ano').value;
-    const estado = document.getElementById('filtro-estado').value;
 
-    
+// Función principal que realiza la búsqueda de propiedades
+async function buscar() {
+
+    // Obtiene los valores ingresados en los filtros
+    const ciudad = document.getElementById('filtro-ciudad').value;
+    const ano = document.getElementById('filtro-ano').value;
+    const estado = document.getElementById('filtro-estado').value;
 
     // Construimos la URL con los parámetros
     let url = `http://127.0.0.1:8000/api/properties?`;
     if(ciudad) url += `city=${ciudad}&`;
-    //if(ano) url += `year=${ano}&`;
+    if(ano) url += `year=${ano}&`;
     if(estado) url += `status=${estado}&`;
 
     try {
+        // Petición HTTP al backend (FastAPI)
         const response = await fetch(url);
+        // Conversión de la respuesta a JSON
         const datos = await response.json();
-        console.log("DATOS RECIBIDOS DEL BACKEND:", datos);
+        //console.log("DATOS RECIBIDOS DEL BACKEND:", datos);
         render(datos);
     } catch (error) {
+        // Manejo de errores
         console.error("Error al conectar con la API:", error);
     }
 }
 
+
+
+// Función encargada de renderizar las propiedades en el DOM
 function render(propiedades) {
     const contenedor = document.getElementById('contenedor-propiedades');
     contenedor.innerHTML = ""; // Limpiar
@@ -46,7 +54,7 @@ function render(propiedades) {
                                 
                                 <div class="card-text mb-2" style="font-size: 0.9rem;">
                                     <strong>Ciudad:</strong> <span style="text-transform: capitalize;">${p.city}</span>
-                                    <!-- <strong>Año:</strong> ${p.year}-->
+                                    <!--<strong>Año:</strong> ${p.year}-->
                                 </div>
 
                                 <p class="card-text fw-bold text-success mb-1">

@@ -105,7 +105,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Limita el texto a exactamente 2 líneas y pone puntos suspensivos (...) */
+
 .text-truncate-custom {
     display: -webkit-box;
     -webkit-line-clamp: 2;

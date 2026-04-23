@@ -1,6 +1,27 @@
 from backend.db.connection import get_connection
 
+
+# Función encargada de consultar propiedades desde la base de datos
 def fetch_properties(city=None, status=None, year=None):
+
+    """
+    Consulta propiedades aplicando filtros opcionales y retorna su estado más reciente.
+
+    Parámetros:
+    - city (str): filtra por ciudad
+    - status (str): filtra por estado de la propiedad (pre_venta, en_venta, vendido)
+    - year (int): filtra por año de construcción
+
+    Retorna:
+    - Lista de diccionarios con la información de las propiedades
+    """
+    
+    # Query principal:
+    # - Obtiene propiedades
+    # - Trae únicamente el último estado usando subconsulta
+    # - Limpia datos (description vacía -> 'NA')
+    # - Filtra propiedades válidas (price > 0, address y city no nulos)
+
 
     query = """
     SELECT 
@@ -25,8 +46,10 @@ def fetch_properties(city=None, status=None, year=None):
     AND p.price > 0 and p.address IS NOT NULL and p.city IS NOT NULL
     """
 
+    # Lista de parámetros para evitar SQL Injection
     params = []
 
+    # Filtros dinámicos
     if city:
         query += " AND p.city = %s"
         params.append(city)
@@ -39,8 +62,10 @@ def fetch_properties(city=None, status=None, year=None):
         query += " AND p.year = %s"
         params.append(year)
 
+    # Conexión a la base de datos
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute(query, params)
 
+    # Ejecución segura de la query con parámetros
+    cursor.execute(query, params)
     return cursor.fetchall()
