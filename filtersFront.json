@@ -1,0 +1,12 @@
+{
+  "filters": {
+    "city": "bogota",
+    "year": 2020,
+    "status": "en_venta"
+  },
+  "pagination": {
+    "page": 1,
+    "limit": 10
+  }
+}
+
