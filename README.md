@@ -17,12 +17,12 @@ Esta solución proporciona una interfaz de servicios para la consulta del catál
 
 1. Configuración del Entorno Virtual
 
-# Crear el entorno virtual
+Crear el entorno virtual
 - python -m venv venv
-# Activar el entorno
-# En Windows (PowerShell):
+Activar el entorno
+En Windows (PowerShell):
 - venv\Scripts\activate
-# En macOS/Linux:
+En macOS/Linux:
 source venv/bin/activate
 
 Nota para Windows: Si recibes un error de permisos al activar el entorno, ejecuta el siguiente comando en tu terminal de PowerShell:
