@@ -1,0 +1,106 @@
+/* Variables de color para mantener la consistencia */
+:root {
+    --primary-color: #0042da; /* Azul Habi */
+    --secondary-color: #f8f9fa;
+    --text-dark: #2d3436;
+    --accent-color: #00b894; /* Verde para estados activos */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+/* Navbar elegante */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de filtros */
+.filters-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+/* Estilo de las tarjetas de propiedad */
+.property-card {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.property-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+
+.property-info {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #636e72;
+}
+
+/* Badge de estado personalizado */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #e1f5fe;
+    color: #01579b;
+}
+
+.btn-search {
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.btn-search:hover {
+    background-color: #00a082;
+}
+
+/* Animación de carga */
+#contenedor-propiedades {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

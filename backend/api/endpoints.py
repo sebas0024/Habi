@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.services.property_service import get_properties
+from backend.services.property_service import get_properties
 
 router = APIRouter()
 

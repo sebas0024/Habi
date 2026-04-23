@@ -1,4 +1,4 @@
-from src.db.connection import get_connection
+from backend.db.connection import get_connection
 
 def fetch_properties(city=None, status=None, year=None):
 
