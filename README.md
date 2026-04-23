@@ -28,7 +28,7 @@ En Windows (PowerShell):
 
 En macOS/Linux:
 
-source venv/bin/activate
+- source venv/bin/activate
 
 Nota para Windows: Si recibes un error de permisos al activar el entorno, ejecuta el siguiente comando en tu terminal de PowerShell:
 - Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
